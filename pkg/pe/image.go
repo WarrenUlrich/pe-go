@@ -3,7 +3,6 @@ package pe
 import (
 	"encoding/binary"
 	"errors"
-	"fmt"
 	"strings"
 )
 
@@ -311,7 +310,6 @@ func (img Image) GetExportDirectory() (ExportDirectory, error) {
 		return result, errors.New("export directory not found")
 	}
 
-	// fmt.Println(offset)
 	result = ExportDirectory{
 		Characteristics:       binary.LittleEndian.Uint32(sectionData[offset : offset+4]),
 		TimeDateStamp:         binary.LittleEndian.Uint32(sectionData[offset+4 : offset+8]),
@@ -345,6 +343,5 @@ func (img Image) GetExportDirectory() (ExportDirectory, error) {
 		})
 	}
 
-	fmt.Println(result.Exports)
 	return result, nil
 }
